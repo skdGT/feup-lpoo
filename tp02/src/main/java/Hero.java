@@ -6,9 +6,16 @@ import javafx.geometry.Pos;
 
 public class Hero extends Element{
 
+    private Stamina stamina;
+
     /** Creates an hero on position x y on the screen**/
     public Hero(int x, int y) {
         super(x, y);
+        this.stamina = new Stamina();
+    }
+
+    public Stamina getStamina() {
+        return stamina;
     }
 
     public Position moveLeft() {

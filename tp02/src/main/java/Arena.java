@@ -83,6 +83,7 @@ public class Arena {
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
 
         score.draw(graphics, this.width);
+        hero.getStamina().draw(graphics, width);
 
         for (Wall wall : walls) {
             wall.draw(graphics);
@@ -174,7 +175,7 @@ public class Arena {
 
     public void gameOver() {
         System.out.println("GAME OVER!\n");
-        System.out.printf("Score %d\n", this.score.getScore());
+        System.out.printf("Score: %d\n", this.score.getScore());
         this.alive = false;
     }
 
