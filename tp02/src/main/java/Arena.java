@@ -14,18 +14,19 @@ import java.util.List;
 import java.util.Random;
 
 public class Arena {
-    private int width;
-    private int height;
-    private Hero hero = new Hero(10, 10);
-    private List<Wall> walls;
-    private List<Coin> coins;
-    private List<Monster> monsters;
-    private Score score;
+    private int width;              // arena width
+    private int height;             // arena height
+    private Hero hero;              // our hero
+    private List<Wall> walls;       // list with all the walls to be printed
+    private List<Coin> coins;       // list with all the coins to be printed
+    private List<Monster> monsters; // list with all the monsters to be printed
+    private Score score;            // our current score
 
-    public boolean alive;
+    public boolean alive;           // is our hero still alive?
 
 
     public Arena(int width, int height) {
+        this.hero = new Hero(10, 10);
         this.width = width;
         this.height = height;
         this.walls = createWalls();
@@ -35,6 +36,7 @@ public class Arena {
         this.alive = true;
     }
 
+    /** Method to create walls around the arena **/
     private List<Wall> createWalls() {
         List<Wall> walls = new ArrayList<>();
 
@@ -51,6 +53,7 @@ public class Arena {
         return walls;
     }
 
+    /** Method to create random coins around the arena **/
     private List<Coin> createCoins() {
         Random random = new Random();
         ArrayList<Coin> coins = new ArrayList<>();
@@ -59,6 +62,7 @@ public class Arena {
         return coins;
     }
 
+    /** Method to create random monsters around the arena **/
     private List<Monster> createMonsters() {
         Random random = new Random();
         ArrayList<Monster> monsters = new ArrayList<>();
@@ -67,6 +71,8 @@ public class Arena {
             x = random.nextInt(width - 2) + 1;
             y = random.nextInt(height - 2) + 1;
 
+            // This allows the algorithm to skip a position that has been
+            // already filled
             while (coinCollision(new Position(x, y))) {
                 x = random.nextInt(width - 2) + 1;
                 y = random.nextInt(height - 2) + 1;
@@ -82,25 +88,25 @@ public class Arena {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
 
-        score.draw(graphics, this.width);
-        hero.getStamina().draw(graphics, width);
 
-        for (Wall wall : walls) {
+        for (Wall wall : walls) {           // draws all walls
             wall.draw(graphics);
         }
 
-        for (Coin coin : coins) {
+        for (Coin coin : coins) {           // draws all coins
             coin.draw(graphics);
         }
 
-        for (Monster monster : monsters) {
+        for (Monster monster : monsters) {  // draws all monsters
             monster.draw(graphics);
         }
 
-        hero.draw(graphics);
+        score.draw(graphics, this.width);   // draws the score
+        hero.drawStamina(graphics, width);  // draws our hero's stamina
+        hero.draw(graphics);                // draws our hero himself
     }
 
-    // Collision detection for walls - returns true if collision detected
+    /** Collision detection for walls - returns true if collision detected **/
     private boolean wallCollision(Position position) {
         for (Wall wall : walls) {
             if (wall.getPosition().equals(position)) {
@@ -110,6 +116,7 @@ public class Arena {
         return false;
     }
 
+    /** Collision detection for monsters **/
     private boolean monsterCollision(Position position) {
         for (Monster monster : monsters) {
             if (monster.getPosition().equals(position)) {
@@ -119,6 +126,7 @@ public class Arena {
         return false;
     }
 
+    /** Collision detection for coins **/
     private boolean coinCollision(Position position) {
         // Collision detection for coins
         boolean foundCoin = false;
@@ -128,6 +136,13 @@ public class Arena {
             if (coin.getPosition().equals(position)) {
                 Random random = new Random();
                 Position coinPosition;
+
+                /*
+                    This do-while allows us to create a random coin and allows us to
+                    prevent a collision situation with a monster or our hero
+
+                    TODO - Find a way to prevent a Coin from spawning in another Coin's Position
+                 */
                 do {
                     coinPosition = new Position(random.nextInt(width - 2) + 1, random.nextInt(height - 2) + 1);
                 } while (monsterCollision(coinPosition) || hero.getPosition().equals(coinPosition));
@@ -144,18 +159,20 @@ public class Arena {
         return foundCoin;
     }
 
-
+    /** Method to determine whether our hero can or not move **/
     private boolean canHeroMove(Position position) {
         if (coinCollision(position)) {
             this.score.increaseScore();
         }
         if (monsterCollision(position)) {
-            gameOver();
+            hero.hit(25);
+            if (!hero.isAlive())
+                gameOver();
         }
         return !wallCollision(position);
     }
 
-
+    /** Move our hero if moving is possible **/
     public void moveHero(Position pos) {
         if (canHeroMove(pos)) {
             hero.setPosition(pos);
@@ -168,11 +185,13 @@ public class Arena {
             }
         }
         if (monsterCollision(pos)) {
-            gameOver();
+            hero.hit(25);
+            if (!hero.isAlive())
+                gameOver();
         }
     }
 
-
+    /** Game Over method to print some info to the console **/
     public void gameOver() {
         System.out.println("GAME OVER!\n");
         System.out.printf("Score: %d\n", this.score.getScore());

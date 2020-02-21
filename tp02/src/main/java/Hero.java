@@ -14,8 +14,16 @@ public class Hero extends Element{
         this.stamina = new Stamina();
     }
 
-    public Stamina getStamina() {
-        return stamina;
+    public void hit(int value) {
+        stamina.decreaseStamina(value);
+    }
+
+    public boolean isAlive() {
+        return stamina.getStamina() != 0;
+    }
+
+    public void drawStamina(TextGraphics graphics, int width) {
+        this.stamina.draw(graphics, width);
     }
 
     public Position moveLeft() {
