@@ -1,13 +1,18 @@
 import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class Game {
-    Screen screen;
+    private Screen screen;
+    private int x = 10;
+    private int y = 10;
 
     /** Default Game ctor - initializes the screen terminal **/
     public Game() {
@@ -31,13 +36,45 @@ public class Game {
     /** method to draw on the screen **/
     private void draw() throws IOException {
         screen.clear();
-        screen.setCharacter(10, 10, new TextCharacter('X'));
+        screen.setCharacter(x, y, new TextCharacter('X'));
         screen.refresh();
     }
 
-
+    /** method to move the X on the screen **/
     public void run() throws IOException {
-        draw();
+        while (true) {
+            draw();
+            KeyStroke key = screen.readInput();
+            processKey(key);
+
+            if (key.getKeyType() == KeyType.EOF) {
+                break;
+            }
+        }
+    }
+
+    /** Processes a key from the input buffer **/
+    private void processKey(KeyStroke key) throws IOException {
+        switch (key.getKeyType()) {
+            case Character:
+                if (key.getCharacter() == 'q') {
+                    screen.close();
+                }
+                break;
+
+            case ArrowLeft:
+                this.x -= 1;
+                break;
+            case ArrowRight:
+                this.x += 1;
+                break;
+            case ArrowUp:
+                this.y -= 1;
+                break;
+            case ArrowDown:
+                this.y += 1;
+                break;
+        }
     }
 
 
