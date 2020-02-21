@@ -20,7 +20,7 @@ public class Arena {
     private List<Wall> walls;
     private List<Coin> coins;
     private List<Monster> monsters;
-    private int score;
+    private Score score;
 
     public boolean alive;
 
@@ -31,7 +31,7 @@ public class Arena {
         this.walls = createWalls();
         this.coins = createCoins();
         this.monsters = createMonsters();
-        this.score = 0;
+        this.score = new Score();
         this.alive = true;
     }
 
@@ -81,6 +81,8 @@ public class Arena {
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+
+        score.draw(graphics, this.width, this.height);
 
         for (Wall wall : walls) {
             wall.draw(graphics);
@@ -144,11 +146,11 @@ public class Arena {
 
     private boolean canHeroMove(Position position) {
         if (coinCollision(position)) {
-            this.score++;
+            this.score.increaseScore();
         }
         if (monsterCollision(position)) {
             System.out.println("GAME OVER!\n");
-            System.out.printf("Score %d\n", this.score);
+            System.out.printf("Score %d\n", this.score.getScore());
             this.alive = false;
         }
         return !wallCollision(position);
