@@ -11,8 +11,8 @@ import java.io.IOException;
 
 public class Game {
     private Screen screen;
-    private int x = 10;
-    private int y = 10;
+
+    Hero hero = new Hero(10, 10);
 
     /** Default Game ctor - initializes the screen terminal **/
     public Game() {
@@ -36,7 +36,7 @@ public class Game {
     /** method to draw on the screen **/
     private void draw() throws IOException {
         screen.clear();
-        screen.setCharacter(x, y, new TextCharacter('X'));
+        screen.setCharacter(hero.getX(), hero.getY(), new TextCharacter('X'));
         screen.refresh();
     }
 
@@ -63,19 +63,18 @@ public class Game {
                 break;
 
             case ArrowLeft:
-                this.x -= 1;
+                hero.moveLeft();
                 break;
             case ArrowRight:
-                this.x += 1;
+                hero.moveRight();
                 break;
             case ArrowUp:
-                this.y -= 1;
+                hero.moveUp();
                 break;
             case ArrowDown:
-                this.y += 1;
+                hero.moveDown();
                 break;
         }
     }
-
 
 }
