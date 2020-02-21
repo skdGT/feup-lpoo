@@ -82,7 +82,7 @@ public class Arena {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
 
-        score.draw(graphics, this.width, this.height);
+        score.draw(graphics, this.width);
 
         for (Wall wall : walls) {
             wall.draw(graphics);
@@ -149,9 +149,7 @@ public class Arena {
             this.score.increaseScore();
         }
         if (monsterCollision(position)) {
-            System.out.println("GAME OVER!\n");
-            System.out.printf("Score %d\n", this.score.getScore());
-            this.alive = false;
+            gameOver();
         }
         return !wallCollision(position);
     }
@@ -176,7 +174,7 @@ public class Arena {
 
     public void gameOver() {
         System.out.println("GAME OVER!\n");
-        System.out.printf("Score %d\n", this.score);
+        System.out.printf("Score %d\n", this.score.getScore());
         this.alive = false;
     }
 
