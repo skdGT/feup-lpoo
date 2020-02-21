@@ -36,7 +36,7 @@ public class Game {
     /** method to draw on the screen **/
     private void draw() throws IOException {
         screen.clear();
-        screen.setCharacter(hero.getX(), hero.getY(), new TextCharacter('X'));
+        screen.setCharacter(hero.getPosition().getX(), hero.getPosition().getY(), new TextCharacter('X'));
         screen.refresh();
     }
 
@@ -53,6 +53,10 @@ public class Game {
         }
     }
 
+    public void moveHero(Position pos) {
+        hero.setPosition(pos);
+    }
+
     /** Processes a key from the input buffer **/
     private void processKey(KeyStroke key) throws IOException {
         switch (key.getKeyType()) {
@@ -63,16 +67,16 @@ public class Game {
                 break;
 
             case ArrowLeft:
-                hero.moveLeft();
+                moveHero(hero.moveLeft());
                 break;
             case ArrowRight:
-                hero.moveRight();
+                moveHero(hero.moveRight());
                 break;
             case ArrowUp:
-                hero.moveUp();
+                moveHero(hero.moveUp());
                 break;
             case ArrowDown:
-                hero.moveDown();
+                moveHero(hero.moveDown());
                 break;
         }
     }
