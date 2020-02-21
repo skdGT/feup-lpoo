@@ -43,7 +43,8 @@ public class Game {
             KeyStroke key = screen.readInput();
             processKey(key);
 
-            if (key.getKeyType() == KeyType.EOF) {
+            if (key.getKeyType() == KeyType.EOF || !arena.alive) {
+                screen.close();
                 break;
             }
         }
