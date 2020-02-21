@@ -15,6 +15,9 @@ import java.util.List;
 public class Arena {
     private int width;
     private int height;
+    private Hero hero = new Hero(10, 10);
+    private List<Wall> walls;
+
 
     public Arena(int width, int height) {
         this.width = width;
@@ -37,9 +40,6 @@ public class Arena {
 
         return walls;
     }
-
-    private Hero hero = new Hero(10, 10);
-    private List<Wall> walls;
 
     /** method to draw on the screen **/
     public void draw(TextGraphics graphics) {
