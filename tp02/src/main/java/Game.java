@@ -22,10 +22,6 @@ public class Game {
             this.screen.startScreen();             // screens must be started
             this.screen.doResizeIfNecessary();     // resize screen if necessary
 
-            // this.screen.clear();
-            // this.screen.setCharacter(10, 10, new TextCharacter('X'));
-            // this.screen.refresh();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,7 +32,7 @@ public class Game {
     /** method to draw on the screen **/
     private void draw() throws IOException {
         screen.clear();
-        arena.draw(screen);
+        arena.draw(screen.newTextGraphics());
         screen.refresh();
     }
 

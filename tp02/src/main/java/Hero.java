@@ -1,3 +1,7 @@
+import com.googlecode.lanterna.SGR;
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import javafx.geometry.Pos;
 
 public class Hero {
@@ -31,5 +35,11 @@ public class Hero {
 
     public Position moveDown() {
         return new Position(position.getX(), position.getY() + 1);
+    }
+
+    public void draw(TextGraphics graphics) {
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
+        graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "X");
     }
 }
