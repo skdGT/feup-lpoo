@@ -2,6 +2,7 @@ package com.aor.numbers;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,14 @@ public class ListAggregatorTest {
     @Test
     public void distinct() {
         ListAggregator aggregator = new ListAggregator(list);
+
+        // We use stubs so that we dont have to bother about the
+        // rest of the code, as if we know that one piece of code
+        // has dependencies to another piece of code (class)
+        // but we want to test if a function is working if the info it
+        // gets is valid (i.g.?)
+
+        // using JUnit stubs
         class StubList implements IListDeduplicator {
             @Override
             public List<Integer> deduplicate() {
@@ -64,7 +73,15 @@ public class ListAggregatorTest {
             }
         }
 
-        int distinct = aggregator.distinct(new StubList());
+        // using Mockito stubs
+        List<Integer> deduplicated = new ArrayList<>();
+        deduplicated.add(1);
+        deduplicated.add(2);
+        deduplicated.add(4);
+        IListDeduplicator deduplicator = Mockito.mock(IListDeduplicator.class);
+        Mockito.when(deduplicator.deduplicate()).thenReturn(deduplicated);
+
+        int distinct = aggregator.distinct(deduplicator);
 
         assertEquals(3, distinct);
     }
