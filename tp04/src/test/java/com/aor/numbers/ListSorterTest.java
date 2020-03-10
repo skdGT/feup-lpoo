@@ -40,4 +40,25 @@ public class ListSorterTest {
 
         assertEquals(expected, sorted);
     }
+
+    @Test
+    public void bug1() {
+        List<Integer> expected = new ArrayList<>();
+        expected.add(1);
+        expected.add(2);
+        expected.add(2);
+        expected.add(4);
+
+        List<Integer> data = new ArrayList<>();
+        data.add(1);
+        data.add(2);
+        data.add(4);
+        data.add(2);
+
+        ListSorter sorted = new ListSorter(data);
+
+        // this test failed so I know the problem is on the sort method
+        assertEquals(expected, sorted.sort());
+    }
+
 }

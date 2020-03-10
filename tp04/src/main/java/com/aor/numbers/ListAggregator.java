@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class ListAggregator {
     private final List<Integer> list;
+    // private IListDeduplicator deduplicator;
 
     public ListAggregator(List<Integer> list) {
         this.list = list;
@@ -58,8 +59,8 @@ public class ListAggregator {
      * Counts the number of distinct numbers in a list.
      * @return The number of distinct numbers.
      */
-    public int distinct() {
-        ListDeduplicator deduplicator = new ListDeduplicator(list);
+    public int distinct(IListDeduplicator deduplicator) {
+        // ListDeduplicator deduplicator = new ListDeduplicator(list);
         List<Integer> distinct = deduplicator.deduplicate();
 
         return distinct.size();
