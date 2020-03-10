@@ -16,8 +16,8 @@ public class ListAggregatorTest {
         this.list = new ArrayList<>();
 
         list.add(1);
-        list.add(2);
         list.add(4);
+        list.add(5);
         list.add(2);
         list.add(5);
     }
@@ -57,5 +57,20 @@ public class ListAggregatorTest {
         int distinct = aggregator.distinct();
 
         assertEquals(4, distinct);
+    }
+
+    @Test   // Bug #7263
+    public void bug1() {
+        List<Integer> test = new ArrayList<>();
+
+        test.add(-1);
+        test.add(-4);
+        test.add(-5);
+
+        ListAggregator aggregator = new ListAggregator(test);
+
+        int maximum = aggregator.max();
+
+        assertEquals(-1, maximum);
     }
 }
