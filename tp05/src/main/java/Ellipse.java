@@ -1,25 +1,29 @@
-public class Ellipse extends Shape {
-    private int xRadius;
-    private int yRadius;
+public class Ellipse implements Shape {
+    private double xRadius;
+    private double yRadius;
 
-    public Ellipse(int xRadius, int yRadius) {
+    public Ellipse(double xRadius, double yRadius) {
         this.xRadius = xRadius;
         this.yRadius = yRadius;
     }
 
-    public int getxRadius() {
+    public double getxRadius() {
         return xRadius;
     }
 
-    public void setxRadius(int xRadius) {
+    public void setxRadius(double xRadius) {
         this.xRadius = xRadius;
     }
 
-    public int getyRadius() {
+    public double getyRadius() {
         return yRadius;
     }
 
-    public void setyRadius(int yRadius) {
+    public void setyRadius(double yRadius) {
         this.yRadius = yRadius;
+    }
+
+    public double getArea() {
+        return Math.PI * xRadius * yRadius;
     }
 }

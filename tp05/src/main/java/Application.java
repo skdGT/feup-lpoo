@@ -5,6 +5,8 @@ public class Application {
         aggregator.addShape(new Square(10));
         aggregator.addShape(new Circle(2));
         aggregator.addShape(new Square(3));
+        aggregator.addShape(new Triangle(2,3));
+        aggregator.addShape(new Ellipse(3, 5));
 
         // -- SRP ---
         AreaStringOutputter stringOutputter = new AreaStringOutputter(aggregator);

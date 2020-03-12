@@ -1,25 +1,30 @@
-public class Rectangle extends Shape {
-    private int height;
-    private int width;
+public class Rectangle implements Shape {
+    private double height;
+    private double width;
 
-    public Rectangle(int height, int width) {
+    public Rectangle(double height, double width) {
         this.height = height;
         this.width = width;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(double width) {
         this.width = width;
     }
+
+    public double getArea() {
+        return height * width;
+    }
+
 }
