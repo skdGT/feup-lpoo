@@ -14,6 +14,5 @@ public class Application {
         System.out.println(xmlOutputter.output());
         // ----------
 
-
     }
 }
