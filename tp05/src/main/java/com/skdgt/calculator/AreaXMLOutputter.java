@@ -1,3 +1,5 @@
+package com.skdgt.calculator;
+
 public class AreaXMLOutputter {
     private AreaAggregator aggregator;
 

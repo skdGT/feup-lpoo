@@ -1,3 +1,5 @@
+package com.skdgt.calculator;
+
 public class AreaStringOutputter {
     private AreaAggregator aggregator;
 

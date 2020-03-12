@@ -1,3 +1,5 @@
+package com.skdgt.calculator.shapes;
+
 public class Square implements Shape {
     private int side;
 
@@ -15,5 +17,9 @@ public class Square implements Shape {
 
     public double getArea() {
         return Math.pow(side, 2);
+    }
+
+    public String draw() {
+        return this.getClass().getName();
     }
 }

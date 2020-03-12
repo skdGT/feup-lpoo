@@ -1,3 +1,5 @@
+package com.skdgt.calculator.shapes;
+
 public class Triangle implements Shape {
     private double base;
     private double height;
@@ -25,5 +27,9 @@ public class Triangle implements Shape {
 
     public double getArea() {
         return base * height / 2.0;
+    }
+
+    public String draw() {
+        return this.getClass().getName();
     }
 }

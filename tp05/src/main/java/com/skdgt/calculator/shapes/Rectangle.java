@@ -1,3 +1,5 @@
+package com.skdgt.calculator.shapes;
+
 public class Rectangle implements Shape {
     private double height;
     private double width;
@@ -27,4 +29,7 @@ public class Rectangle implements Shape {
         return height * width;
     }
 
+    public String draw() {
+        return this.getClass().getName();
+    }
 }

@@ -1,3 +1,5 @@
+package com.skdgt.calculator.shapes;
+
 public class Ellipse implements Shape {
     private double xRadius;
     private double yRadius;
@@ -25,5 +27,9 @@ public class Ellipse implements Shape {
 
     public double getArea() {
         return Math.PI * xRadius * yRadius;
+    }
+
+    public String draw() {
+        return this.getClass().getName();
     }
 }

@@ -1,3 +1,5 @@
+package com.skdgt.calculator.shapes;
+
 public class Circle implements Shape {
     private double radius;
 
@@ -16,4 +18,9 @@ public class Circle implements Shape {
     public double getArea() {
         return Math.PI * radius * radius;
     }
+
+    public String draw() {
+        return this.getClass().getName();
+    }
+
 }
