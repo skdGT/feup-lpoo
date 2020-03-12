@@ -1,11 +1,11 @@
-package com.skdgt.calculator;
+package com.skdgt.calculator.aggregators;
 
 import com.skdgt.calculator.shapes.HasArea;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AreaAggregator {
+public class AreaAggregator implements SumProvider {
     private List<HasArea> elements = new ArrayList<>();
 
     public void addShape(HasArea element) {

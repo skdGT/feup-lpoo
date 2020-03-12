@@ -1,26 +1,41 @@
-import com.skdgt.calculator.AreaAggregator;
-import com.skdgt.calculator.AreaStringOutputter;
-import com.skdgt.calculator.AreaXMLOutputter;
+import com.skdgt.calculator.aggregators.AreaAggregator;
+import com.skdgt.calculator.outputters.AreaStringOutputter;
+import com.skdgt.calculator.outputters.AreaXMLOutputter;
+import com.skdgt.calculator.aggregators.City;
 import com.skdgt.calculator.shapes.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
         AreaAggregator aggregator = new AreaAggregator();
 
         aggregator.addShape(new Square(10));
+        aggregator.addShape(new Circle(5));
         aggregator.addShape(new Circle(2));
-        aggregator.addShape(new Square(3));
-        aggregator.addShape(new Triangle(2,3));
-        aggregator.addShape(new Ellipse(3, 5));
-        aggregator.addShape(new House(20));
+        aggregator.addShape(new Ellipse(2, 3));
+        aggregator.addShape(new Rectangle(10, 5));
+        aggregator.addShape(new Triangle(10, 2));
+        aggregator.addShape(new House(100));
 
-        // -- SRP ---
         AreaStringOutputter stringOutputter = new AreaStringOutputter(aggregator);
         AreaXMLOutputter xmlOutputter = new AreaXMLOutputter(aggregator);
 
         System.out.println(stringOutputter.output());
         System.out.println(xmlOutputter.output());
-        // ----------
 
+        List<House> houses = new ArrayList<>();
+        houses.add(new House(50));
+        houses.add(new House(150));
+
+        City city = new City(houses);
+
+        AreaStringOutputter cityStringOutputter = new AreaStringOutputter(city);
+        AreaXMLOutputter cityXmlOutputter = new AreaXMLOutputter(city);
+
+        System.out.println(cityStringOutputter.output());
+        System.out.println(cityXmlOutputter.output());
     }
+
 }
