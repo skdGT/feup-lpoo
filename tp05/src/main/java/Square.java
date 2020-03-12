@@ -1,5 +1,5 @@
 public class Square extends Shape {
-    int side;
+    private int side;
 
     public Square(int side) {
         this.side = side;
