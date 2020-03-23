@@ -1,3 +1,5 @@
+package skdgt.designpatterns.stringdrinks;
+
 public class StringCaseChanger implements StringTransformer {
     StringDrink stringDrink;
 

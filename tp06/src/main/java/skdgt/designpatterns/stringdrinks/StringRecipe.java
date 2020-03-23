@@ -1,3 +1,5 @@
+package skdgt.designpatterns.stringdrinks;
+
 import java.util.List;
 
 public class StringRecipe {

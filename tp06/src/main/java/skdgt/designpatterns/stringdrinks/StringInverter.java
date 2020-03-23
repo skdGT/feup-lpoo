@@ -1,3 +1,5 @@
+package skdgt.designpatterns.stringdrinks;
+
 public class StringInverter implements StringTransformer {
     StringDrink stringDrink;
 

@@ -1,3 +1,5 @@
+package skdgt.designpatterns.stringdrinks;
+
 public class StringDrink {
     String text;
 

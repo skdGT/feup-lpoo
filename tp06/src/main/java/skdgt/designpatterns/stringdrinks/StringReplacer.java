@@ -1,3 +1,5 @@
+package skdgt.designpatterns.stringdrinks;
+
 public class StringReplacer implements StringTransformer {
     StringDrink stringDrink;
     Character oldChar;
