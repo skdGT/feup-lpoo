@@ -15,4 +15,10 @@ public class StringReplacer implements StringTransformer {
         change = change.replace(this.oldChar, this.newChar);
         stringDrink.setText(change);
     }
+
+    public void undo() {
+        String change = stringDrink.getText();
+        change = change.replace(this.newChar, this.oldChar);
+        stringDrink.setText(change);
+    }
 }
