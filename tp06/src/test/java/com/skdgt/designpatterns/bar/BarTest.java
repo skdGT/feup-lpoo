@@ -1,3 +1,8 @@
+package com.skdgt.designpatterns.bar;
+
+import com.skdgt.designpatterns.bar.Bar;
+import com.skdgt.designpatterns.bar.StringBar;
+import com.skdgt.designpatterns.clients.HumanClient;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -16,6 +21,7 @@ public class BarTest {
         bar.endHappyHour();
         assertFalse(bar.isHappyHour());
     }
+
     @Test
     public void addObserver() {
         Bar bar = new StringBar();

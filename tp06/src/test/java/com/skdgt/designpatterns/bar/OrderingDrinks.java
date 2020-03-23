@@ -1,10 +1,16 @@
+package com.skdgt.designpatterns.bar;
+
+import com.skdgt.designpatterns.bar.StringBar;
+import com.skdgt.designpatterns.clients.HumanClient;
+import com.skdgt.designpatterns.clients.ImpatientStrategy;
+import com.skdgt.designpatterns.clients.SmartStrategy;
+import com.skdgt.designpatterns.stringdrinks.*;
+import org.junit.Assert;
 import org.junit.Test;
-import skdgt.designpatterns.stringdrinks.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
 
 public class OrderingDrinks {
     private StringRecipe getRecipe(StringDrink drink) {
@@ -28,7 +34,7 @@ public class OrderingDrinks {
         StringRecipe recipe = getRecipe(drink);
 
         stringBar.order(recipe);
-        assertEquals("dCbX-DcBa", drink.getText());
+        Assert.assertEquals("dCbX-DcBa", drink.getText());
     }
 
     @Test
@@ -42,7 +48,7 @@ public class OrderingDrinks {
 
         // Recipe is ordered immediately
         client.wants(recipe, stringBar);
-        assertEquals("dCbX-DcBa", drink.getText());
+        Assert.assertEquals("dCbX-DcBa", drink.getText());
     }
 
     @Test
@@ -57,7 +63,7 @@ public class OrderingDrinks {
         // Recipe is ordered immediately as happy hour was already under way
         stringBar.startHappyHour();
         client.wants(recipe, stringBar);
-        assertEquals("dCbX-DcBa", drink.getText());
+        Assert.assertEquals("dCbX-DcBa", drink.getText());
     }
 
     @Test
@@ -71,12 +77,10 @@ public class OrderingDrinks {
         stringBar.addObserver(client); // this is important!
 
         client.wants(recipe, stringBar);
-        assertEquals("AbCd-aBcD", drink.getText());
+        Assert.assertEquals("AbCd-aBcD", drink.getText());
 
         // Recipe is only ordered here
         stringBar.startHappyHour();
-        assertEquals("dCbX-DcBa", drink.getText());
+        Assert.assertEquals("dCbX-DcBa", drink.getText());
     }
-
-
 }

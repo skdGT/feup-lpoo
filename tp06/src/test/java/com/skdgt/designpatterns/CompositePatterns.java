@@ -1,5 +1,7 @@
+package com.skdgt.designpatterns;
+
+import com.skdgt.designpatterns.stringdrinks.*;
 import org.junit.Test;
-import skdgt.designpatterns.stringdrinks.*;
 
 import java.util.ArrayList;
 import java.util.List;

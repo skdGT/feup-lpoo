@@ -1,4 +1,4 @@
-package skdgt.designpatterns.stringdrinks;
+package com.skdgt.designpatterns.stringdrinks;
 
 public class StringDrink {
     String text;

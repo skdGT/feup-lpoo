@@ -1,4 +1,8 @@
-import skdgt.designpatterns.stringdrinks.*;
+package com.skdgt.designpatterns.clients;
+
+import com.skdgt.designpatterns.bar.Bar;
+import com.skdgt.designpatterns.bar.StringBar;
+import com.skdgt.designpatterns.stringdrinks.StringRecipe;
 
 public class HumanClient implements Client {
     OrderingStrategy strategy;

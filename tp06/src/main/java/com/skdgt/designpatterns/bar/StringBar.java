@@ -1,4 +1,6 @@
-import skdgt.designpatterns.stringdrinks.*;
+package com.skdgt.designpatterns.bar;
+
+import com.skdgt.designpatterns.stringdrinks.StringRecipe;
 
 public class StringBar extends Bar {
     public StringBar() {

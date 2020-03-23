@@ -1,19 +1,20 @@
-import skdgt.designpatterns.stringdrinks.*;
+package com.skdgt.designpatterns.clients;
 
-public class SmartStrategy implements OrderingStrategy {
+import com.skdgt.designpatterns.bar.StringBar;
+import com.skdgt.designpatterns.stringdrinks.StringRecipe;
+
+public class ImpatientStrategy implements OrderingStrategy {
     StringRecipe recipe;
 
     @Override
     public void wants(StringRecipe recipe, StringBar bar) {
-        if (bar.isHappyHour())
-            bar.order(recipe);
-
         this.recipe = recipe;
+        bar.order(recipe);
     }
 
     @Override
     public void happyHourStarted(StringBar bar) {
-        this.wants(recipe, bar);
+        // do nothing
     }
 
     @Override
