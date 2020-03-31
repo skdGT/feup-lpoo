@@ -17,11 +17,10 @@ public class Order {
     public boolean isElegibleForFreeDelivery() {
         double total = 0;
 
-        for (OrderLine line : lines)
-            total += line.product.getPrice() * line.quantity;
+        for (OrderLine line : this.lines)
+            total += line.getLinePrice();
 
-        if (total > 100) return true;
-        else return false;
+        return total > 100;
     }
 
     public String printOrder() {

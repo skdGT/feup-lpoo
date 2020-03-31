@@ -8,4 +8,8 @@ public class OrderLine {
         this.product = product;
         this.quantity = quantity;
     }
+
+    public double getLinePrice() {
+        return this.quantity * this.product.getPrice();
+    }
 }
