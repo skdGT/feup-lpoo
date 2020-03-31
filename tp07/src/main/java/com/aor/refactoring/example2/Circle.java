@@ -1,13 +1,10 @@
 package com.aor.refactoring.example2;
 
-public class Circle implements Shape {
-    private double x;
-    private double y;
+public class Circle extends Shape {
     private double radius;
 
     public Circle(double x, double y, double radius) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.radius = radius;
     }
 
