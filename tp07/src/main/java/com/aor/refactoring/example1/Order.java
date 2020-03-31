@@ -31,7 +31,7 @@ public class Order {
         StringBuffer printBuffer = new StringBuffer();
 
         for (OrderLine line : lines)
-            printBuffer.append(line.product.getName() + "(x" + line.quantity + "): " + (line.product.getPrice() * line.quantity) + "\n");
+            printBuffer.append(line.details() + "\n");
 
         printBuffer.append("Total: " + this.getTotal());
 
